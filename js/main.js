@@ -48,3 +48,20 @@ document.getElementById('free-delivery-btn').addEventListener('click', function 
 document.getElementById('charged-delivery-btn').addEventListener('click', function () {
     extraCost(20, 'delivery-charge');
 });
+
+// add pomo code calculation in the total price
+document.getElementById('pomo-code-btn').addEventListener('click', function () {
+    const pomoCodeInput = document.getElementById('pomo-code-input');
+    const finalTotalPrice = document.getElementById('final-total-price');
+    const finalTotalPriceValue = calculateTotal();
+    let clickCount = 0;
+    if (pomoCodeInput.value == 'stevekaku') {
+        const discountedPrice = finalTotalPriceValue - (finalTotalPriceValue * 0.2);
+        finalTotalPrice.innerText = discountedPrice;
+        pomoCodeInput.value = '';
+        clickCount++;
+        if(clickCount == 1){
+            document.getElementById('pomo-code-btn').disabled = true;
+        }
+    }
+});
